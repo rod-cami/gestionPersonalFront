@@ -9,7 +9,7 @@ const TableEmployees = () => {
 
   const obtenerDatos = async () => {
     try {
-      const data = await getDatos('/Empleado');
+      const data = await getDatos(`https://gestionpersonal.azurewebsites.net/Empleado`);
       setDatos(data)
     } catch (error) {
       console.error("Error al obtener los datos:", error);

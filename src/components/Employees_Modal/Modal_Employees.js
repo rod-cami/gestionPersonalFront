@@ -15,7 +15,7 @@ const ModalEmployees = ({show, handleClose, nombre, id}) => {
   switch (nombre) {
     case 'Info':
       body_component = <BodyInfoEmployees id={id}/>
-      nombre = "Información del Empleado - Mejorar" 
+      nombre = "Información del Empleado" 
       break;
     case 'add':
       body_component = <Form_Create/>
