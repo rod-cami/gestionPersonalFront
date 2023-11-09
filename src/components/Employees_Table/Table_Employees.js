@@ -19,7 +19,7 @@ const TableEmployees = () => {
 
   useEffect(()=>{obtenerDatos()},[]);
 
-  //console.log(datos)
+  console.log(datos)
   return (
     <>
       <div className='container mt-4 mb-5'>

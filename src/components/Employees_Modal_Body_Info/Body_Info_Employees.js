@@ -8,7 +8,7 @@ const BodyInfoEmployees =({id}) => {
   const [loading, setLoading] = useState(true);
 
   const obtenerDatos = async () => {
-    const { employer, supervisor } = await utilitiesEmployer({ id });
+    const { employer, supervisor } = await utilitiesEmployer({ id: id });
     setEmployer(employer);
     setSupervisor(supervisor);
     setLoading(false);

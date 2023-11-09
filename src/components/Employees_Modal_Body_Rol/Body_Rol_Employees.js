@@ -12,7 +12,7 @@ const BodyRolEmployees = ({id}) => {
   const [loading, setLoading] = useState(true);
 
   const obtenerDatos = async () => {
-    const { employer, roles, sectores} = await utilitiesEmployer({ id });
+    const { employer, roles, sectores} = await utilitiesEmployer({ id: id });
     setEmployer(employer);
     setRoles(roles);
     setSectores(sectores);

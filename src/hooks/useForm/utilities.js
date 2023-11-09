@@ -1,6 +1,6 @@
 import getDatos from '../useApi/getDatos';
 
-const utilitiesEmployer = async ({id}) => {
+const utilitiesEmployer = async ({id = 1}) => {
 
   const roles = await getDatos(`/Rol`);
   const sectores = await getDatos(`/Sector`);

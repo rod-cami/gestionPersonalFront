@@ -10,97 +10,14 @@ const Form_Update = () => {
   return (
     <Fragment>
       <Form className='row m-0 p-2' onSubmit={handleSubmit(procesarFormulario)}>
-        <Form.Group className='col-md-6 mt-2'>
-          <Form.Label>Nombre</Form.Label>
-          <Form.Control
-            placeholder="Ingrese nombre del Usuario"
-            className="input"
-            name="nombre"
-            minLength={2}
-            maxLength={15}
-            {
-              ...register('nombre',{
-                required: {
-                  value: true,
-                  message: 'Campo requerido'
-                }, 
-                maxLength: {
-                  value: 15,
-                  message: 'Debe ser menor a 15'
-                },
-                minLength: {
-                  value: 2,
-                  message: 'Debe ser mayor a 2'
-                },
-                pattern: { 
-                  value: /^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/i,
-                  message: 'Este campo solo acepta letras y espacios'
-                }
-            })}
-          ></Form.Control>
-          <Form.Text className="text-danger tamLetra">
-            {errors.nombre?.message}
-          </Form.Text>
-        </Form.Group>
-        <Form.Group className='col-md-6 mt-2'>
-          <Form.Label>Apellido</Form.Label>
-          <Form.Control
-            placeholder="Ingrese nombre del Usuario"
-            className="input"
-            name="apellido"
-            minLength={2}
-            maxLength={25}
-            {
-              ...register('apellido',{
-                required: {
-                  value: true,
-                  message: 'Campo requerido'
-                }, 
-                maxLength: {
-                  value: 25,
-                  message: 'Debe ser menor a 15'
-                },
-                minLength: {
-                  value: 2,
-                  message: 'Debe ser mayor a 2'
-                },
-                pattern: { 
-                  value: /^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/i,
-                  message: 'Este campo solo acepta letras y espacios'
-                }
-            })}
-          ></Form.Control>
-          <Form.Text className="text-danger tamLetra">
-            {errors.apellido?.message}
-          </Form.Text>
-        </Form.Group>
-        <Form.Group className='col-md-6 mt-2'>
-          <Form.Label>Fecha de Nacimiento</Form.Label>
-          <Form.Control
-            placeholder="Ingrese fecha de nacimiento"
-            className="input"
-            type='date'
-            name="fecha_nacimiento"
-            {
-              ...register('fecha_nacimiento',{
-                required: {
-                  value: true,
-                  message: 'Campo requerido'
-                }
-            })}
-          ></Form.Control>
-          <Form.Text className="text-danger tamLetra">
-            {errors.fecha_nacimiento?.message}
-          </Form.Text>
-        </Form.Group>
         <Form.Group className="col-md-6 mt-2">
           <Form.Label>Genero</Form.Label>
           <Form.Select 
             name="genero" 
             {...register('genero')}>
-            <option value="Femenino">Femenino</option>
-            <option value="Masculino">Masculino</option>
-            <option value="NN">Prefiero no decirlo</option>
+            <option value='F'>Femenino</option>
+            <option value='M'>Masculino</option>
+            <option value='N'>Prefiero no decirlo</option>
           </Form.Select>
           <Form.Text className="text-danger tamLetra d-block">
             {errors.genero?.message}
@@ -143,7 +60,6 @@ const Form_Update = () => {
           <Form.Control
             placeholder="Ingrese telefono del empleado"
             className="input"
-            type='number'
             name="telefono"
             {
               ...register('telefono',{
@@ -153,7 +69,7 @@ const Form_Update = () => {
                 },
                 pattern: { 
                   value: /^\+?[0-9\s-]+$/i,
-                  message: 'Este campo solo acepta números'
+                  message: 'Este campo solo acepta números y/o el simbolo + al comienzo'
                 }
             })}
           ></Form.Control>
@@ -165,12 +81,13 @@ const Form_Update = () => {
           <Form.Label>Email</Form.Label>
           <Form.Control
             placeholder="Ingrese el email del empleado"
-            className="email"
-            name="email"
+            className="input"
+            type='email'
+            name="correo"
             minLength={2}
             maxLength={300}
             {
-              ...register('email',{
+              ...register('correo',{
                 required: {
                   value: true,
                   message: 'Campo requerido'
@@ -190,85 +107,7 @@ const Form_Update = () => {
             })}
           ></Form.Control>
           <Form.Text className="text-danger tamLetra d-block">
-            {errors.email?.message}
-          </Form.Text>
-        </Form.Group>
-        <Form.Group className='col-md-6 mt-2'>
-          <Form.Label>Fecha de Contratacion</Form.Label>
-          <Form.Control
-            placeholder="Ingrese fecha de contratacion"
-            className="input"
-            type='date'
-            name="fecha_contratacion"
-            {
-              ...register('fecha_contratacion',{
-                required: {
-                  value: true,
-                  message: 'Campo requerido'
-                }
-            })}
-          ></Form.Control>
-          <Form.Text className="text-danger tamLetra">
-            {errors.fecha_contratacion?.message}
-          </Form.Text>
-        </Form.Group>
-        <Form.Group className='col-md-6 mt-2'>
-          <Form.Label>CUIL</Form.Label>
-          <Form.Control
-            placeholder="Ingrese CUIL del empleado"
-            className="input"
-            type='number'
-            name="cuil"
-            {
-              ...register('cuil',{
-                required: {
-                  value: true,
-                  message: 'Campo requerido'
-                }, 
-                pattern: { 
-                  value: /^\+?[0-9\s-]+$/i,
-                  message: 'Este campo solo acepta números'
-                }
-            })}
-          ></Form.Control>
-          <Form.Text className="text-danger tamLetra">
-            {errors.cuil?.message}
-          </Form.Text>
-        </Form.Group>
-        <Form.Group className="col-md-6 mt-2">
-          <Form.Label>Supervisor</Form.Label>
-          <Form.Select 
-            name="supervisor" 
-            {...register('supervisor')}>
-            <option value="admin">Tobias</option>
-            <option value="usuario">Belén</option>
-          </Form.Select>
-          <Form.Text className="text-danger tamLetra d-block">
-            {errors.supervisor?.message}
-          </Form.Text>
-        </Form.Group>
-        <Form.Group className="col-md-3 mt-2">
-          <Form.Label>Rol</Form.Label>
-          <Form.Select 
-            name="rol" 
-            {...register('rol')}>
-            <option value="admin">Admin</option>
-            <option value="usuario">Usuario</option>
-          </Form.Select>
-          <Form.Text className="text-danger tamLetra d-block">
-            {errors.rol?.message}
-          </Form.Text>
-        </Form.Group>
-        <Form.Group className="col-md-3 mt-2">
-          <Form.Label>Sector</Form.Label>
-          <Form.Select 
-            name="sector" 
-            {...register('sector')}>
-            <option value="admin">Administración</option>
-            <option value="usuario">Bedelía</option>
-          </Form.Select>
-          <Form.Text className="text-danger tamLetra d-block">
-            {errors.sector?.message}
+            {errors.correo?.message}
           </Form.Text>
         </Form.Group>
         <div className='col-12 mt-4 d-flex justify-content-end'>

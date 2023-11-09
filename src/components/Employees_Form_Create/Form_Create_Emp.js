@@ -1,32 +1,58 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Form, Button } from 'react-bootstrap';
 import {  useForm } from 'react-hook-form';
+import { utilitiesEmployer } from '../../hooks/useForm/utilities';
 
 const Form_Create = () => {
   const {register, formState: { errors }, handleSubmit} = useForm();
+  /*const [roles, setRoles] = useState([]);
+  const [sectores, setSectores] = useState([]);
+  const [supervisores, setSupervisores] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const obtenerDatos = async () => {
+    const { roles, sectores, supervisores} = await utilitiesEmployer({});
+    setRoles(roles);
+    setSectores(sectores);
+    setSupervisores(supervisores);
+    setLoading(false);
+  };
+
+  useEffect(()=>{obtenerDatos()},[]);
+  
+
+  if (loading) {
+    return <div>Cargando...</div>;
+  }
+
+  if (!roles) {
+    return <div>No se encontraron datos</div>;
+  }*/
+
   const procesarFormulario = (data, e) =>{
     console.log(data)
   }
+
   return (
     <Fragment>
       <Form className='row m-0 p-2' onSubmit={handleSubmit(procesarFormulario)}>
         <Form.Group className='col-md-6 mt-2'>
           <Form.Label>Nombre</Form.Label>
           <Form.Control
-            placeholder="Ingrese nombre del Usuario"
+            placeholder="Ingrese nombre del Empleado"
             className="input"
-            name="nombre"
+            name="nombreEmpleado"
             minLength={2}
-            maxLength={15}
+            maxLength={55}
             {
-              ...register('nombre',{
+              ...register('nombreEmpleado',{
                 required: {
                   value: true,
                   message: 'Campo requerido'
                 }, 
                 maxLength: {
-                  value: 15,
-                  message: 'Debe ser menor a 15'
+                  value: 55,
+                  message: 'Debe ser menor a 55'
                 },
                 minLength: {
                   value: 2,
@@ -39,7 +65,7 @@ const Form_Create = () => {
             })}
           ></Form.Control>
           <Form.Text className="text-danger tamLetra">
-            {errors.nombre?.message}
+            {errors.nombreEmpleado?.message}
           </Form.Text>
         </Form.Group>
         <Form.Group className='col-md-6 mt-2'>
@@ -47,18 +73,18 @@ const Form_Create = () => {
           <Form.Control
             placeholder="Ingrese nombre del Usuario"
             className="input"
-            name="apellido"
+            name="apellidoEmpleado"
             minLength={2}
-            maxLength={25}
+            maxLength={55}
             {
-              ...register('apellido',{
+              ...register('apellidoEmpleado',{
                 required: {
                   value: true,
                   message: 'Campo requerido'
                 }, 
                 maxLength: {
-                  value: 25,
-                  message: 'Debe ser menor a 15'
+                  value: 55,
+                  message: 'Debe ser menor a 55'
                 },
                 minLength: {
                   value: 2,
@@ -71,7 +97,7 @@ const Form_Create = () => {
             })}
           ></Form.Control>
           <Form.Text className="text-danger tamLetra">
-            {errors.apellido?.message}
+            {errors.apellidoEmpleado?.message}
           </Form.Text>
         </Form.Group>
         <Form.Group className='col-md-6 mt-2'>
@@ -80,9 +106,9 @@ const Form_Create = () => {
             placeholder="Ingrese fecha de nacimiento"
             className="input"
             type='date'
-            name="fecha_nacimiento"
+            name="fechaNacimiento"
             {
-              ...register('fecha_nacimiento',{
+              ...register('fechaNacimiento',{
                 required: {
                   value: true,
                   message: 'Campo requerido'
@@ -90,7 +116,7 @@ const Form_Create = () => {
             })}
           ></Form.Control>
           <Form.Text className="text-danger tamLetra">
-            {errors.fecha_nacimiento?.message}
+            {errors.fechaNacimiento?.message}
           </Form.Text>
         </Form.Group>
         <Form.Group className="col-md-6 mt-2">
@@ -98,9 +124,9 @@ const Form_Create = () => {
           <Form.Select 
             name="genero" 
             {...register('genero')}>
-            <option value="Femenino">Femenino</option>
-            <option value="Masculino">Masculino</option>
-            <option value="NN">Prefiero no decirlo</option>
+            <option value='F'>Femenino</option>
+            <option value='M'>Masculino</option>
+            <option value='N'>Prefiero no decirlo</option>
           </Form.Select>
           <Form.Text className="text-danger tamLetra d-block">
             {errors.genero?.message}
@@ -143,7 +169,6 @@ const Form_Create = () => {
           <Form.Control
             placeholder="Ingrese telefono del empleado"
             className="input"
-            type='number'
             name="telefono"
             {
               ...register('telefono',{
@@ -153,7 +178,7 @@ const Form_Create = () => {
                 },
                 pattern: { 
                   value: /^\+?[0-9\s-]+$/i,
-                  message: 'Este campo solo acepta números'
+                  message: 'Este campo solo acepta números y/o el simbolo + al comienzo'
                 }
             })}
           ></Form.Control>
@@ -165,12 +190,13 @@ const Form_Create = () => {
           <Form.Label>Email</Form.Label>
           <Form.Control
             placeholder="Ingrese el email del empleado"
-            className="email"
-            name="email"
+            className="input"
+            type='email'
+            name="correo"
             minLength={2}
             maxLength={300}
             {
-              ...register('email',{
+              ...register('correo',{
                 required: {
                   value: true,
                   message: 'Campo requerido'
@@ -190,7 +216,7 @@ const Form_Create = () => {
             })}
           ></Form.Control>
           <Form.Text className="text-danger tamLetra d-block">
-            {errors.email?.message}
+            {errors.correo?.message}
           </Form.Text>
         </Form.Group>
         <Form.Group className='col-md-6 mt-2'>
@@ -199,9 +225,9 @@ const Form_Create = () => {
             placeholder="Ingrese fecha de contratacion"
             className="input"
             type='date'
-            name="fecha_contratacion"
+            name="fechaContratacion"
             {
-              ...register('fecha_contratacion',{
+              ...register('fechaContratacion',{
                 required: {
                   value: true,
                   message: 'Campo requerido'
@@ -209,7 +235,7 @@ const Form_Create = () => {
             })}
           ></Form.Control>
           <Form.Text className="text-danger tamLetra">
-            {errors.fecha_contratacion?.message}
+            {errors.fechaContratacion?.message}
           </Form.Text>
         </Form.Group>
         <Form.Group className='col-md-6 mt-2'>
@@ -235,42 +261,41 @@ const Form_Create = () => {
             {errors.cuil?.message}
           </Form.Text>
         </Form.Group>
-        <Form.Group className="col-md-6 mt-2">
+        {/*<Form.Group className="col-md-6 mt-2">
           <Form.Label>Supervisor</Form.Label>
           <Form.Select 
-            name="supervisor" 
-            {...register('supervisor')}>
-            <option value="admin">Tobias</option>
-            <option value="usuario">Belén</option>
+            name="legajoSupervisor" 
+            {...register('legajoSupervisor')}>
+            {supervisores.map(supervisor => <option value={supervisor.legajoEmpleado}>{supervisor.apellidoEmpleado}, {supervisor.nombreEmpleado}</option>)}
           </Form.Select>
           <Form.Text className="text-danger tamLetra d-block">
-            {errors.supervisor?.message}
+            {errors.legajoSupervisor?.message}
           </Form.Text>
         </Form.Group>
         <Form.Group className="col-md-3 mt-2">
           <Form.Label>Rol</Form.Label>
           <Form.Select 
-            name="rol" 
-            {...register('rol')}>
-            <option value="admin">Admin</option>
-            <option value="usuario">Usuario</option>
+            name="rolIdRol" 
+            {...register('rolIdRol')}>
+            {roles.map(rol => <option value={rol.idRol}>{rol.nombreRol}</option>)}
           </Form.Select>
           <Form.Text className="text-danger tamLetra d-block">
-            {errors.rol?.message}
+            {errors.rolIdRol?.message}
           </Form.Text>
         </Form.Group>
         <Form.Group className="col-md-3 mt-2">
           <Form.Label>Sector</Form.Label>
           <Form.Select 
-            name="sector" 
-            {...register('sector')}>
-            <option value="admin">Administración</option>
-            <option value="usuario">Bedelía</option>
+            name="sectorIdSector" 
+            {...register('sectorIdSector')}>
+            {sectores.map(sector => <option value={sector.idSector}>{sector.nombreSector}</option>)}
           </Form.Select>
           <Form.Text className="text-danger tamLetra d-block">
-            {errors.sector?.message}
+            {errors.sectorIdSector?.message}
           </Form.Text>
         </Form.Group>
+        
+        */}
         <div className='col-12 mt-4 d-flex justify-content-end'>
           <Button type="submit" variant="outline-dark">Guardar</Button>
         </div>

@@ -11,7 +11,7 @@ const BodySupervisorEmployees = ({id}) => {
   const [loading, setLoading] = useState(true);
 
   const obtenerDatos = async () => {
-    const { employer, supervisor, supervisores} = await utilitiesEmployer({ id });
+    const { employer, supervisor, supervisores} = await utilitiesEmployer({ id: id });
     setEmployer(employer);
     setSupervisor(supervisor);
     setSupervisores(supervisores);

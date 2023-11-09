@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.login{
+  box-shadow:
+    3.6px 3.4px 13.8px rgba(0, 0, 0, 0.048),
+    8.6px 8.1px 33.3px rgba(0, 0, 0, 0.069),
+    16.3px 15.3px 62.6px rgba(0, 0, 0, 0.085),
+    29px 27.3px 111.7px rgba(0, 0, 0, 0.101),
+    54.3px 51px 208.9px rgba(0, 0, 0, 0.122),
+    130px 122px 500px rgba(0, 0, 0, 0.17)
+  ;
+}
