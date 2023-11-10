@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { utilitiesEmployee } from '../../hooks/utilities/employeeUtils';
+import { fetchEmployeeUtilities } from '../../hooks/utilities/connectionUtils';
 
 const BodyInfoEmployees =({id, token}) => {
 
@@ -8,8 +8,7 @@ const BodyInfoEmployees =({id, token}) => {
   const [loading, setLoading] = useState(true);
 
   const obtenerDatos = async () => {
-    const url = process.env.REACT_APP_API_URL;
-    const { employee, supervisor } = await utilitiesEmployee({URL: url, userToken: token, id: id });
+    const { employee, supervisor } = await fetchEmployeeUtilities({userToken: token, id: id });
     setEmployee(employee);
     setSupervisor(supervisor);
     setLoading(false);

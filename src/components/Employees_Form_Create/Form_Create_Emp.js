@@ -1,9 +1,9 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { Form, Button } from 'react-bootstrap';
 import {  useForm } from 'react-hook-form';
-import { utilitiesEmployee } from '../../hooks/utilities/employeeUtils';
+import { addNewEmployee, fetchEmployeeUtilities } from '../../hooks/utilities/connectionUtils';
 import { showConfirmationAlert } from '../../hooks/utilities/notificationUtils';
-import { async } from 'q';
+import { cuilValidator, emailValidator } from '../../hooks/validators/formDataValidators';
 
 const Form_Create = ({id, token}) => {
   const {register, formState: { errors }, handleSubmit} = useForm();
@@ -13,9 +13,7 @@ const Form_Create = ({id, token}) => {
   const [loading, setLoading] = useState(true);
 
   const obtenerDatos = async () => {
-    
-    const url = process.env.REACT_APP_API_URL;
-    const { roles, sectores, supervisores} = await utilitiesEmployee({URL: url, userToken: token, id: id });
+    const { roles, sectores, supervisores} = await fetchEmployeeUtilities({userToken: token, id: 1 });
     setRoles(roles);
     setSectores(sectores);
     setSupervisores(supervisores);
@@ -35,8 +33,11 @@ const Form_Create = ({id, token}) => {
 
   const procesarFormulario = async (data, e) =>{
     const response = await showConfirmationAlert();
-    console.log(response)
-    console.log(data)
+    if (response && emailValidator({userToken: token ,email: data.correo}) && cuilValidator({userToken: token ,cuil: data.cuil})) {
+      await addNewEmployee({userToken: token, data: data})
+      e.target.reset();
+      window.location.reload();
+    }
   }
 
   return (

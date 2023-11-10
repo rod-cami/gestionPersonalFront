@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { utilitiesEmployee, utilitiesSetReports} from '../../hooks/utilities/employeeUtils';
-import { async } from 'q';
-
-
+import { fetchEmployeeUtilities } from '../../hooks/utilities/connectionUtils';
+import { generateReportTexts } from '../../hooks/utilities/employeeUtils';
 
 const BodyReportEmployees = ({ id , token}) => {
 
@@ -16,9 +14,8 @@ const BodyReportEmployees = ({ id , token}) => {
   const [txtReportSector, setTxtReportSector] = useState(null);
   
   const obtenerDatos = async () => {
-    const url = process.env.REACT_APP_API_URL;
-    const { employee, roles, sectores, reportRoles, reportSectores} = await utilitiesEmployee({ URL: url, userToken: token, id: id });
-    const { reportRolTxt, reportSectorTxt } = await utilitiesSetReports({sectores, roles, reportRoles, reportSectores});
+    const { employee, roles, sectores, reportRoles, reportSectores} = await fetchEmployeeUtilities({userToken: token, id: id });
+    const { reportRolTxt, reportSectorTxt } = await generateReportTexts({sectores, roles, reportRoles, reportSectores});
 
     setEmployee(employee);
     setRoles(roles);
@@ -43,14 +40,14 @@ const BodyReportEmployees = ({ id , token}) => {
 
   return (
     <div className='mx-3'>
-        <h5>Historial del empleado {employee.nombreEmpleado}</h5>
-        <p>Actualmente el empleado trabaja en el sector Bedelía como Secretario</p>
+        <h5 className='fw-medium mt-2 fs-5'>Historial del empleado {employee.nombreEmpleado}</h5>
+        <p className='fw-light mt-1'>Actualmente el empleado trabaja en el sector Bedelía como Secretario</p>
 
-        <p>Roles</p>
-        <p>{txtReportRol}</p>
+        <p className='fw-medium mt-2 fs-5'>Roles</p>
+        <p className='fw-light mt-1'>{txtReportRol}</p>
 
-        <p>Sectores</p>
-        <p>{txtReportSector}</p>
+        <p className='fw-medium mt-2 fs-5'>Sectores</p>
+        <p className='fw-light mt-1'>{txtReportSector}</p>
       </div>
   )
 }
