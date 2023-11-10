@@ -8,7 +8,9 @@ const BodyInfoEmployees =({id}) => {
   const [loading, setLoading] = useState(true);
 
   const obtenerDatos = async () => {
-    const { employer, supervisor } = await utilitiesEmployer({ id: id });
+    const userToken = localStorage.getItem('token'); 
+    const url = process.env.REACT_APP_API_URL;
+    const { employer, supervisor } = await utilitiesEmployer({URL: url, userToken: userToken, id: id });
     setEmployer(employer);
     setSupervisor(supervisor);
     setLoading(false);

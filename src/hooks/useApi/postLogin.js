@@ -9,7 +9,7 @@ const login = async (URL, data) => {
     }
   })
   const access = await response.json()
-  
+  console.log(access)
   return access
 }
 

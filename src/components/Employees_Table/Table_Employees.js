@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import getDatos from '../../hooks/useApi/getDatos'
 import { Table } from 'react-bootstrap';
 import RowEmployees from '../Employees_Row_Table/Row_Employees';
+import { utilitiesEmployer } from '../../hooks/useForm/utilities';
 
 const TableEmployees = () => {
 
@@ -9,8 +10,10 @@ const TableEmployees = () => {
 
   const obtenerDatos = async () => {
     try {
-      const data = await getDatos('/Empleado');
-      setDatos(data)
+      const userToken = localStorage.getItem('token'); 
+      const url = process.env.REACT_APP_API_URL;
+      const { empleados } = await utilitiesEmployer({ URL: url, userToken: userToken, id: 1 });
+      setDatos(empleados)
     } catch (error) {
       console.error("Error al obtener los datos:", error);
     }

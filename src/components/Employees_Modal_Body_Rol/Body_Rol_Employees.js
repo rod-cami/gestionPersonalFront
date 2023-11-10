@@ -12,7 +12,9 @@ const BodyRolEmployees = ({id}) => {
   const [loading, setLoading] = useState(true);
 
   const obtenerDatos = async () => {
-    const { employer, roles, sectores} = await utilitiesEmployer({ id: id });
+    const userToken = localStorage.getItem('token'); 
+    const url = process.env.REACT_APP_API_URL;
+    const { employer, roles, sectores} = await utilitiesEmployer({ URL: url, userToken: userToken, id: id });
     setEmployer(employer);
     setRoles(roles);
     setSectores(sectores);
