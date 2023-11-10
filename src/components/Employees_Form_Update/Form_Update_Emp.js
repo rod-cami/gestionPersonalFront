@@ -1,10 +1,14 @@
 import React, { Fragment } from 'react'
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import { showConfirmationAlert } from '../../hooks/utilities/notificationUtils';
+import { async } from 'q';
 
-const Form_Update = () => {
+const Form_Update = ({id, token}) => {
   const {register, formState: { errors }, handleSubmit} = useForm();
-  const procesarFormulario = (data, e) =>{
+  const procesarFormulario = async (data, e) =>{
+    const response = await showConfirmationAlert();
+    console.log(response)
     console.log(data)
   }
   return (

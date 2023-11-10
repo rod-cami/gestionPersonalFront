@@ -1,21 +1,20 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { utilitiesEmployer} from '../../hooks/useForm/utilities';
+import { utilitiesEmployee} from '../../hooks/utilities/employeeUtils';
 
-const BodySupervisorEmployees = ({id}) => {
+const BodySupervisorEmployees = ({id,token}) => {
   const {register, formState: { errors }, handleSubmit} = useForm();
-  const [employer, setEmployer] = useState([]);
+  const [employee, setEmployee] = useState([]);
   const [supervisor, setSupervisor] = useState([]);
   const [supervisores, setSupervisores] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const obtenerDatos = async () => {
     
-    const userToken = localStorage.getItem('token'); 
     const url = process.env.REACT_APP_API_URL;
-    const { employer, supervisor, supervisores} = await utilitiesEmployer({URL: url, userToken: userToken, id: id });
-    setEmployer(employer);
+    const { employee, supervisor, supervisores} = await utilitiesEmployee({URL: url, userToken: token, id: id });
+    setEmployee(employee);
     setSupervisor(supervisor);
     setSupervisores(supervisores);
     setLoading(false);
@@ -28,7 +27,7 @@ const BodySupervisorEmployees = ({id}) => {
     return <div>Cargando...</div>;
   }
 
-  if (!employer) {
+  if (!employee) {
     return <div>No se encontraron datos</div>;
   }
 
@@ -39,7 +38,7 @@ const BodySupervisorEmployees = ({id}) => {
   return (
     <Fragment>
       <div className='mx-3'>
-        <p>Actualmente {employer.genero === 'F' ? "la empleada" : "el empleado"} {employer.nombreEmpleado}, {employer.apellidoEmpleado} se encuentra supervisado por {supervisor.nombreEmpleado}, {supervisor.apellidoEmpleado} </p>
+        {supervisor ? <p>Actualmente {employee.genero === 'F' ? "la empleada" : "el empleado"} {employee.nombreEmpleado}, {employee.apellidoEmpleado} parece no tener empleado supervisor</p> : <p>Actualmente {employee.genero === 'F' ? "la empleada" : "el empleado"} {employee.nombreEmpleado}, {employee.apellidoEmpleado} se encuentra supervisado por {supervisor.nombreEmpleado}, {supervisor.apellidoEmpleado} </p>}
       </div>
       <Form className='row m-0 p-2' onSubmit={handleSubmit(procesarFormulario)}>
         <Form.Group className="col-md-12 mt-2">

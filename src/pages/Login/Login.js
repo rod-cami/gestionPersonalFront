@@ -2,7 +2,7 @@ import React from 'react'
 import './Login.css';
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import login from '../../hooks/useApi/postLogin';
+import login from '../../hooks/api/postLogin';
 
 const Login = ({ setToken, setUser}) => {
   const {register, formState: { errors }, handleSubmit} = useForm();
@@ -18,9 +18,7 @@ const Login = ({ setToken, setUser}) => {
     if (response.status != 400) {
       setUser(data.username)
       setToken(response.access_token);
-
       localStorage.setItem('user', data.username);
-      localStorage.setItem('token', response.access_token);
     }
   }
   

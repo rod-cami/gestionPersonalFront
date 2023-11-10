@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import getDatos from '../../hooks/useApi/getDatos'
+import getDatos from '../../hooks/api/getDatos'
 import { Table } from 'react-bootstrap';
 import RowEmployees from '../Employees_Row_Table/Row_Employees';
-import { utilitiesEmployer } from '../../hooks/useForm/utilities';
+import { utilitiesEmployee } from '../../hooks/utilities/employeeUtils';
 
-const TableEmployees = () => {
+const TableEmployees = ({token}) => {
 
   const [datos, setDatos] = useState([]);
 
   const obtenerDatos = async () => {
     try {
-      const userToken = localStorage.getItem('token'); 
       const url = process.env.REACT_APP_API_URL;
-      const { empleados } = await utilitiesEmployer({ URL: url, userToken: userToken, id: 1 });
+      const { empleados } = await utilitiesEmployee({ URL: url, userToken: token, id: 1 });
       setDatos(empleados)
     } catch (error) {
       console.error("Error al obtener los datos:", error);
@@ -21,8 +20,6 @@ const TableEmployees = () => {
 }
 
   useEffect(()=>{obtenerDatos()},[]);
-
-  console.log(datos)
   return (
     <>
       <div className='container mt-4 mb-5'>
@@ -39,7 +36,7 @@ const TableEmployees = () => {
           </thead>
           <tbody className='fs-6 text-start fw-light'>
             {datos.map(x => 
-              <RowEmployees name={`${x.nombreEmpleado}, ${x.apellidoEmpleado}`} gender={x.genero} phone={x.telefono} email={x.correo} id={x.legajoEmpleado}/>
+              <RowEmployees name={`${x.nombreEmpleado}, ${x.apellidoEmpleado}`} gender={x.genero} phone={x.telefono} email={x.correo} id={x.legajoEmpleado} token={token} finContrato={x.fechaFinContrato}/>
             )
             }
           </tbody>

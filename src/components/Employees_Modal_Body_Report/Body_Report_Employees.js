@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { utilitiesEmployer} from '../../hooks/useForm/utilities';
+import { utilitiesEmployee, utilitiesSetReports} from '../../hooks/utilities/employeeUtils';
+import { async } from 'q';
 
-let reportSectorTxt = "";
-let reportRolTxt = "";
 
-const BodyReportEmployees = ({ id }) => {
 
-  const [employer, setEmployer] = useState([]);
+const BodyReportEmployees = ({ id , token}) => {
+
+  const [employee, setEmployee] = useState([]);
   const [roles, setRoles] = useState([]);
   const [sectores, setSectores] = useState([]);
   const [reportRoles, setReportRoles] = useState([]);
@@ -16,74 +16,41 @@ const BodyReportEmployees = ({ id }) => {
   const [txtReportSector, setTxtReportSector] = useState(null);
   
   const obtenerDatos = async () => {
-    const userToken = localStorage.getItem('token'); 
     const url = process.env.REACT_APP_API_URL;
-    const { employer, roles, sectores, reportRoles, reportSectores} = await utilitiesEmployer({ URL: url, userToken: userToken, id: id });
-    setEmployer(employer);
+    const { employee, roles, sectores, reportRoles, reportSectores} = await utilitiesEmployee({ URL: url, userToken: token, id: id });
+    const { reportRolTxt, reportSectorTxt } = await utilitiesSetReports({sectores, roles, reportRoles, reportSectores});
+
+    setEmployee(employee);
     setRoles(roles);
     setSectores(sectores);
     setReportRoles(reportRoles);
     setReportSectores(reportSectores);
-    setReports();
+    setTxtReportRol(reportRolTxt);
+    setTxtReportSector(reportSectorTxt);
+    setLoading(false)
   };
 
   useEffect(()=>{obtenerDatos()},[]);
 
-  const setReports = () => {
-    reportRoles.forEach(rs => {
-      let rolNew = roles.find(x => x.idRol == rs.rolNuevo);
-      let rolOld= roles.find(x => x.idRol == rs.rolViejo);
-  
-      if (reportRoles.length < 2) {
-        reportRolTxt = "No hubo cambios de roles en el ciclo de este empleado";
-      }else{
-        if (rs.rolViejo) {
-          reportRolTxt += `El día ${(rs.fechaCambio.slice(0,10))} dejo el rol de ${rolOld.nombreRol} y pasó al rol de ${rolNew.nombreRol}.`;
-        } else {
-          reportRolTxt += `El día ${(rs.fechaCambio.slice(0,10))} comenzó a trabajar en el rol de ${rolNew.nombreRol}`;
-        }
-      }
-    })
-
-  
-    reportSectores.forEach(rs => {
-      let sectorNew = sectores.find(x => x.idSector == rs.sectorNuevo);
-      let sectorOld= sectores.find(x => x.idSector == rs.sectorViejo);
-  
-      if (reportSectores.length < 2) {
-        reportSectorTxt = "No hubo cambios de sectores en el ciclo de este empleado";
-      }else{
-        if (rs.sectorViejo) {
-          reportSectorTxt += `El día ${(rs.fechaCambio.slice(0,10))} dejo el sector de ${sectorOld.nombreSector} y pasó al sector de ${sectorNew.nombreSector}.`;
-        } else {
-          reportSectorTxt += `El día ${(rs.fechaCambio.slice(0,10))} comenzó a trabajar en el sector de ${sectorNew.nombreSector}. `
-        }
-      }
-    })
-
-    setTxtReportRol(reportRolTxt);
-    setTxtReportSector(reportSectorTxt);
-  }
-  
-  if (txtReportRol === null || txtReportSector === null) {
+  if (loading) {
     return <div>Cargando...</div>;
   }
 
-  if (!employer) {
+  if (!employee) {
     return <div>No se encontraron datos</div>;
   }
 
 
   return (
     <div className='mx-3'>
-        <h5>Historial del empleado {employer.nombreEmpleado}</h5>
+        <h5>Historial del empleado {employee.nombreEmpleado}</h5>
         <p>Actualmente el empleado trabaja en el sector Bedelía como Secretario</p>
 
         <p>Roles</p>
-        <p>{reportRolTxt}</p>
+        <p>{txtReportRol}</p>
 
         <p>Sectores</p>
-        <p>{reportSectorTxt}</p>
+        <p>{txtReportSector}</p>
       </div>
   )
 }

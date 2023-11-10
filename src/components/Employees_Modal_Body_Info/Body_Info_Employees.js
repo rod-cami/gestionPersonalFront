@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { utilitiesEmployer } from '../../hooks/useForm/utilities';
+import { utilitiesEmployee } from '../../hooks/utilities/employeeUtils';
 
-const BodyInfoEmployees =({id}) => {
+const BodyInfoEmployees =({id, token}) => {
 
-  const [employer, setEmployer] = useState([]);
+  const [employee, setEmployee] = useState([]);
   const [supervisor, setSupervisor] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const obtenerDatos = async () => {
-    const userToken = localStorage.getItem('token'); 
     const url = process.env.REACT_APP_API_URL;
-    const { employer, supervisor } = await utilitiesEmployer({URL: url, userToken: userToken, id: id });
-    setEmployer(employer);
+    const { employee, supervisor } = await utilitiesEmployee({URL: url, userToken: token, id: id });
+    setEmployee(employee);
     setSupervisor(supervisor);
     setLoading(false);
   };
@@ -23,7 +22,7 @@ const BodyInfoEmployees =({id}) => {
     return <div>Cargando...</div>;
   }
 
-  if (!employer) {
+  if (!employee) {
     return <div>No se encontraron datos</div>;
   }
 
@@ -34,47 +33,67 @@ const BodyInfoEmployees =({id}) => {
           <tbody className='fw-light text-start'>
             <tr>
               <td>Empleado</td>
-              <td>{employer.nombreEmpleado}, {employer.apellidoEmpleado}</td>
+              <td>{employee.nombreEmpleado}, {employee.apellidoEmpleado}</td>
             </tr>
             <tr>
               <td>CUIL</td>
-              <td>{employer.cuil}</td>
+              <td>{employee.cuil}</td>
             </tr>
             <tr>
               <td>Email</td>
-              <td>{employer.correo}</td>
+              <td>{employee.correo}</td>
             </tr>
-            <tr>
-              <td>Rol</td>
-              <td>{employer.rol.nombreRol}</td>
-            </tr>
-            <tr>
-              <td>Sector</td>
-              <td>{employer.sector.nombreSector}</td>
-            </tr>
-            <tr>
-              <td>Supervisor</td>
-              <td>{supervisor.nombreEmpleado}, {supervisor.apellidoEmpleado}</td>
-            </tr>
+            {employee.fechaFinContrato ? 
+              <>
+                <tr>
+                  <td>Rol</td>
+                  <td>No posee rol actualmente</td>
+                </tr>
+                <tr>
+                  <td>Sector</td>
+                  <td>No posee sector actualmente</td>
+                </tr>
+                <tr>
+                  <td>Supervisor</td>
+                  <td>No posee supervisor actualmente</td>
+                </tr>
+              </>
+            :
+              <>
+                <tr>
+                  <td>Rol</td>
+                  <td>{employee.rol.nombreRol}</td>
+                </tr>
+                <tr>
+                  <td>Sector</td>
+                  <td>{employee.sector.nombreSector}</td>
+                </tr>
+                <tr>
+                  <td>Supervisor</td>
+                  {supervisor ?  <td>{supervisor.nombreEmpleado}, {supervisor.apellidoEmpleado}</td> : <td>No posee supervisor actualmente</td> }
+                </tr>
+              </>
+            }
+            
             <tr>
               <td>Fecha de Contratación</td>
-              <td>{(employer.fechaContratacion).slice(0,10)}</td>
+              <td>{(employee.fechaContratacion).slice(0,10)}</td>
             </tr>
             <tr>
               <td>Fecha de Nacimiento</td>
-              <td>{(employer.fechaNacimiento).slice(0,10)}</td>
+              <td>{(employee.fechaNacimiento).slice(0,10)}</td>
             </tr>
             <tr>
               <td>Teléfono</td>
-              <td>{employer.telefono}</td>
+              <td>{employee.telefono ? employee.telefono : 'No posee número de teléfono'}</td>
             </tr>
             <tr>
               <td>Dirección</td>
-              <td>{employer.direccion}</td>
+              <td>{employee.direccion ? employee.direccion : 'No posee dirección'}</td>
             </tr>
             <tr>
               <td>Género</td>
-              <td>{employer.genero === 'F' ? 'Femenino' : 'Masculino'}</td>
+              <td>{employee.genero === 'F' ? 'Femenino' : 'Masculino'}</td>
             </tr>
           </tbody>
         </table>

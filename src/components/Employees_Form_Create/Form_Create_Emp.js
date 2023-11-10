@@ -1,17 +1,21 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { Form, Button } from 'react-bootstrap';
 import {  useForm } from 'react-hook-form';
-import { utilitiesEmployer } from '../../hooks/useForm/utilities';
+import { utilitiesEmployee } from '../../hooks/utilities/employeeUtils';
+import { showConfirmationAlert } from '../../hooks/utilities/notificationUtils';
+import { async } from 'q';
 
-const Form_Create = () => {
+const Form_Create = ({id, token}) => {
   const {register, formState: { errors }, handleSubmit} = useForm();
-  /*const [roles, setRoles] = useState([]);
+  const [roles, setRoles] = useState([]);
   const [sectores, setSectores] = useState([]);
   const [supervisores, setSupervisores] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const obtenerDatos = async () => {
-    const { roles, sectores, supervisores} = await utilitiesEmployer({});
+    
+    const url = process.env.REACT_APP_API_URL;
+    const { roles, sectores, supervisores} = await utilitiesEmployee({URL: url, userToken: token, id: id });
     setRoles(roles);
     setSectores(sectores);
     setSupervisores(supervisores);
@@ -27,9 +31,11 @@ const Form_Create = () => {
 
   if (!roles) {
     return <div>No se encontraron datos</div>;
-  }*/
+  }
 
-  const procesarFormulario = (data, e) =>{
+  const procesarFormulario = async (data, e) =>{
+    const response = await showConfirmationAlert();
+    console.log(response)
     console.log(data)
   }
 
@@ -261,7 +267,7 @@ const Form_Create = () => {
             {errors.cuil?.message}
           </Form.Text>
         </Form.Group>
-        {/*<Form.Group className="col-md-6 mt-2">
+        <Form.Group className="col-md-6 mt-2">
           <Form.Label>Supervisor</Form.Label>
           <Form.Select 
             name="legajoSupervisor" 
@@ -294,8 +300,6 @@ const Form_Create = () => {
             {errors.sectorIdSector?.message}
           </Form.Text>
         </Form.Group>
-        
-        */}
         <div className='col-12 mt-4 d-flex justify-content-end'>
           <Button type="submit" variant="outline-dark">Guardar</Button>
         </div>

@@ -12,12 +12,11 @@ function App() {
     const userLogin = localStorage.getItem('user')
     if (userLogin) {
       setUser(userLogin);
-      const userToken = localStorage.getItem('token')
-      setToken(userToken)
     } else {
       setUser(null);
     }
   }, []);
+
 
   return (
     
