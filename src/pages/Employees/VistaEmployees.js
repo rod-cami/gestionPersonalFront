@@ -13,7 +13,7 @@ const VistaEmployees = ({token}) => {
     <div transition-style="in:wipe:bottom-right">
       <h1 className='fs-1 text-center fw-light my-5'>Administrar Empleados</h1>
       <div className='px-5 mx-5'>
-          <button type="button" className="btn btn-outline-dark " onClick={handleShow}><i className="bi bi-person-add mx-1 fs-6"> Agregar </i></button>
+          <div className='d-flex justify-content-end mb-3'><button type="button" className="btn btn-outline-dark " onClick={handleShow}><i className="bi bi-person-add mx-1 fs-6"> Agregar </i></button></div>
           <TableEmployees token={token} />
       </div>
       

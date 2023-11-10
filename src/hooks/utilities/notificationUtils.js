@@ -56,7 +56,7 @@ const showSuccessAlert = async () =>{
   });
 }
 
-const showFailureAlert = async () =>{
+const showFailureAlert = async (message) =>{
   await Swal.fire({
     position: "center",
     icon: "error",
@@ -73,8 +73,7 @@ const showDuplicateAlert = async (message) =>{
     icon: "error",
     title: message,
     text: "Por favor intente con otro.",
-    showConfirmButton: false,
-    timer: 1500
+    showConfirmButton: true
   });
 }
 

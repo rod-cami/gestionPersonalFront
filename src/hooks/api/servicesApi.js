@@ -43,7 +43,7 @@ const getData = async (URL,token) => {
         'Authorization': `Bearer ${token}` , 
       }
     })
-
+    
     if (!response.ok) {
       if (response.status === 401){
         return response.status

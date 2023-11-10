@@ -33,7 +33,9 @@ const Form_Create = ({id, token}) => {
 
   const procesarFormulario = async (data, e) =>{
     const response = await showConfirmationAlert();
-    if (response && emailValidator({userToken: token ,email: data.correo}) && cuilValidator({userToken: token ,cuil: data.cuil})) {
+    const responseEmail = await emailValidator({userToken: token ,email: data.correo})
+    const responseCuil = await cuilValidator({userToken: token ,cuil: data.cuil})
+    if (response && responseEmail && responseCuil) {
       await addNewEmployee({userToken: token, data: data})
       e.target.reset();
       window.location.reload();
