@@ -60,7 +60,7 @@ const TableEmployees = ({token}) => {
       <div className='d-flex justify-content-end'>
         <div class="input-group mb-3 w-25">
           <input type="text" className="form-control" value={busquedaEmpleado} onChange={handleChangeEmployees} placeholder="Buscar empleado" aria-label="Buscar empleado" aria-describedby="button-search-employees"/>
-          <button class="btn btn-outline-dark" type="button" id="button-search-employees"><i className="bi bi-search"></i></button>
+          <button class="btn btn-outline-dark" type="button" id="button-search-employees" disabled><i className="bi bi-search"></i></button>
         </div>
       </div>
       <div className='container mt-4 mb-5'>
@@ -86,7 +86,7 @@ const TableEmployees = ({token}) => {
       <div className='d-flex justify-content-end mt-5'>
         <div class="input-group mb-3 w-25">
           <input type="text" className="form-control" value={busquedaSupervisor} onChange={handleChangeSupervisor} placeholder="Buscar supervisor" aria-label="Buscar supervisor" aria-describedby="button-search-supervisor"/>
-          <button class="btn btn-outline-dark" type="button" id="button-search-supervisor"><i className="bi bi-search"></i></button>
+          <button class="btn btn-outline-dark" type="button" id="button-search-supervisor" disabled><i className="bi bi-search"></i></button>
         </div>
       </div>
       <div className='container mt-4 mb-5'>

@@ -14,6 +14,7 @@ const fetchEmployeeUtilities = async ({userToken, id = 1 }) => {
     await showLogoutAlert();
     window.location.reload();
   }
+  
   const sectores = await getData(`${URL}/Sector`,userToken);
   const empleados = await getData(`${URL}/Empleado`,userToken);
   const reportRoles = await getData(`${URL}/HistorialRol/${id}`,userToken)

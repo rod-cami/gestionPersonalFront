@@ -77,4 +77,15 @@ const showDuplicateAlert = async (message) =>{
   });
 }
 
-export {showConfirmationAlert , showLogoutAlert, showSuccessAlert, showFailureAlert, showDuplicateAlert}
+const showFailureLogin = async (message) =>{
+  await Swal.fire({
+    position: "center",
+    icon: "error",
+    title: message,
+    text: "Por favor intente con datos válidos",
+    showConfirmButton: false,
+    timer: 2000
+  });
+}
+
+export {showConfirmationAlert , showLogoutAlert, showSuccessAlert, showFailureAlert, showDuplicateAlert, showFailureLogin}

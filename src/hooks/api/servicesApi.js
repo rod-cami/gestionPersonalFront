@@ -11,7 +11,8 @@ const putData = async (URL,data,token) => {
   return response
 };
 
-const login = async (URL, data) => {
+const postLogin = async (URL, data) => {
+  console.log(data)
   const response = await fetch(URL,{
     method: 'POST',
     body: data,
@@ -72,4 +73,4 @@ const deleteData = async (URL, token) =>{
   return response
 }
 
-export {deleteData, putData, postData, login, getData}
+export {deleteData, putData, postData, postLogin, getData}

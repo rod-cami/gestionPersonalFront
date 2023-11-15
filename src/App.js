@@ -17,12 +17,13 @@ function App() {
     }
   }, []);
 
+  
 
   return (
     
-      <>
+    <>
       {user ? <VistaEmployees token={token}/> : <div className="d-flex justify-content-center"> <div className='w-50 my-5'><Login setToken={setToken} setUser={setUser}/></div></div>}
-      </>
+    </>
     
   );
 }
