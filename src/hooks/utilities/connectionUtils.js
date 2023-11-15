@@ -11,7 +11,7 @@ const fetchEmployeeUtilities = async ({userToken, id = 1 }) => {
   if (roles === 401) {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
-    await showLogoutAlert();
+    await showLogoutAlert("La sesión expiró!");
     window.location.reload();
   }
   
@@ -35,7 +35,7 @@ const addNewEmployee = async ({userToken,data}) => {
   if (response_api.status === 401) {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
-    await showLogoutAlert();
+    await showLogoutAlert("La sesión expiró!");
     window.location.reload();
   } else if (response_api.status === 200) {
     await showSuccessAlert();
@@ -50,7 +50,7 @@ const updateEmployee = async ({userToken, data, id}) => {
   if (response_api.status === 401) {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
-    await showLogoutAlert();
+    await showLogoutAlert("La sesión expiró!");
     window.location.reload();
   } else if (response_api.status === 200) {
     await showSuccessAlert();
@@ -65,7 +65,7 @@ const deleteEmployee = async ({userToken, id}) =>{
   if (response_api.status === 401) {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
-    await showLogoutAlert();
+    await showLogoutAlert("La sesión expiró!");
     window.location.reload();
   } else if (response_api.status === 200) {
     await showSuccessAlert();

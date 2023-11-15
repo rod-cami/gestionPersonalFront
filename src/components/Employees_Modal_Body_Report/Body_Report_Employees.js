@@ -44,10 +44,10 @@ const BodyReportEmployees = ({ id , token}) => {
         <p className='fw-light mt-1'>Actualmente el empleado trabaja en el sector Bedelía como Secretario</p>
 
         <p className='fw-medium mt-2 fs-5'>Roles</p>
-        <p className='fw-light mt-1'>{txtReportRol}</p>
+        <p className='fw-light mt-1' dangerouslySetInnerHTML={{ __html: txtReportRol}}></p>
 
         <p className='fw-medium mt-2 fs-5'>Sectores</p>
-        <p className='fw-light mt-1'>{txtReportSector}</p>
+        <p className='fw-light mt-1' dangerouslySetInnerHTML={{ __html: txtReportRol}}></p>
       </div>
   )
 }

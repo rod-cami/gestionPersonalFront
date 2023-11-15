@@ -53,6 +53,8 @@ const getData = async (URL,token) => {
     }
 
     const data = await response.json().catch(() => null);
+
+    console.log(data)
     return data ? data.results : null;
 
   } catch (error) {

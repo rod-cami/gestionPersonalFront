@@ -37,12 +37,12 @@ const showConfirmationAlert = async () => {
   return bandera
 }
 
-const showLogoutAlert = async () =>{
+const showLogoutAlert = async (msg) =>{
   await Swal.fire({
     position: "center",
     icon: "info",
-    title: "La sesión expiró!",
-    text: "Vamos a recargar la pagína para que vuelvas a iniciar sesión.",
+    title: msg,
+    text: "Vamos a recargar la pagina para que vuelvas a iniciar sesión.",
   });
 }
 
