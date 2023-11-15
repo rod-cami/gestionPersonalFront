@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Form, InputGroup, Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import RowEmployees from '../Employees_Row_Table/Row_Employees';
 import { fetchEmployeeUtilities } from '../../hooks/utilities/connectionUtils';
-import { useForm } from 'react-hook-form';
 
 const TableEmployees = ({token}) => {
   const [busquedaEmpleado, setBusquedaEmpleado] = useState("");
@@ -52,6 +51,7 @@ const TableEmployees = ({token}) => {
     })
     setSupervisores(result)
   }
+  
   useEffect(()=>{obtenerDatos()},[]);
   
 

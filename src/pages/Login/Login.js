@@ -4,22 +4,23 @@ import { Form, Spinner } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { loginUser } from '../../hooks/utilities/loginUtils';
 
-const Login = ({ setToken, setUser}) => {
+const Login = () => {
   const {register, formState: { errors }, handleSubmit} = useForm();
   const [load, setLoad] = useState(false)
+
   const datos = new URLSearchParams();
   const procesarFormulario = async (data, e) =>{
     setLoad(true)
     datos.append('username', data.username);
     datos.append('password', data.password);
-    console.log(datos)
+
     const response = await loginUser({datos: datos})
+    
     if (response !== false) {
-      setUser(data.username)
-      setToken(response);
       localStorage.setItem('user', data.username);
       localStorage.setItem('token', response);
       setLoad(false)
+      window.location.reload();
     }
   }
   

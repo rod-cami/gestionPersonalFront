@@ -3,12 +3,12 @@ import TableEmployees from '../../components/Employees_Table/Table_Employees'
 import ModalEmployees from '../../components/Employees_Modal/Modal_Employees';
 import { showLogoutAlert } from '../../hooks/utilities/notificationUtils';
 
-const VistaEmployees = ({token}) => {
+const VistaEmployees = () => {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  token = localStorage.getItem('token');
+
+  const token = localStorage.getItem('token');
   const user = localStorage.getItem('user')
 
   const logoutUser = async () =>{

@@ -47,7 +47,7 @@ const BodyReportEmployees = ({ id , token}) => {
         <p className='fw-light mt-1' dangerouslySetInnerHTML={{ __html: txtReportRol}}></p>
 
         <p className='fw-medium mt-2 fs-5'>Sectores</p>
-        <p className='fw-light mt-1' dangerouslySetInnerHTML={{ __html: txtReportRol}}></p>
+        <p className='fw-light mt-1' dangerouslySetInnerHTML={{ __html: txtReportSector}}></p>
       </div>
   )
 }

@@ -1,4 +1,3 @@
-import { async } from "q";
 import Swal from "sweetalert2";
 
 const showConfirmationAlert = async () => {
