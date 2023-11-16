@@ -38,7 +38,7 @@ const Form_Create = ({id, token}) => {
     if (response && responseEmail && responseCuil) {
       await addNewEmployee({userToken: token, data: data})
       e.target.reset();
-      window.location.reload();
+      //window.location.reload();
     }
   }
 
@@ -135,7 +135,6 @@ const Form_Create = ({id, token}) => {
             {...register('genero')}>
             <option value='F'>Femenino</option>
             <option value='M'>Masculino</option>
-            <option value='N'>Prefiero no decirlo</option>
           </Form.Select>
           <Form.Text className="text-danger tamLetra d-block">
             {errors.genero?.message}
@@ -254,11 +253,21 @@ const Form_Create = ({id, token}) => {
             className="input"
             type='number'
             name="cuil"
+            min={10000000000}
+            max={99999999999}
             {
               ...register('cuil',{
                 required: {
                   value: true,
                   message: 'Campo requerido'
+                }, 
+                max: {
+                  value: 99999999999,
+                  message: 'Debe ser de 11 dígitos'
+                },
+                min: {
+                  value: 10000000000,
+                  message: 'Debe ser de 11 dígitos'
                 }, 
                 pattern: { 
                   value: /^\+?[0-9\s-]+$/i,

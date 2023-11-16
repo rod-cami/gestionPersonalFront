@@ -41,7 +41,7 @@ const addNewEmployee = async ({userToken,data}) => {
     await showSuccessAlert();
   } else{
     const error = await response_api.json()
-    await showFailureAlert(error.errorsMessages);
+    await showFailureAlert(error.messages[0]);
   }
 }
 
@@ -56,7 +56,7 @@ const updateEmployee = async ({userToken, data, id}) => {
     await showSuccessAlert();
   } else{
     const error = await response_api.json()
-    await showFailureAlert(error.errorsMessages);
+    await showFailureAlert(error.messages[0]);
   }
 }
 
@@ -71,7 +71,7 @@ const deleteEmployee = async ({userToken, id}) =>{
     await showSuccessAlert();
   } else{
     const error = await response_api.json()
-    await showFailureAlert(error.errorsMessages);
+    await showFailureAlert(error.messages[0]);
   }
 }
 

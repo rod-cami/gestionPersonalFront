@@ -26,7 +26,7 @@ const Login = () => {
   
   return (
     <div className='border border-0 rounded-5 p-5 login'>
-      <h1 className='text-5xl font-semibold text-center'>Bienvenido</h1>
+      <h1 className='fs-1 text-center'>Bienvenido</h1>
       <p className='font-medium text-lg text-gray-500 mt-4 text-center'>Inicie sesión para ingresar al módulo de gestión de personal</p>
       <Form className='row m-0 p-2' onSubmit={handleSubmit(procesarFormulario)}>
         <Form.Group className="col-12 mt-3">

@@ -28,8 +28,8 @@ const RowEmployees = ({name,gender,phone,id,token,finContrato,rol}) => {
       <tr>
         <td className='align-middle'>{id}</td>
         <td className='align-middle'>{name}</td>
-        <td className='align-middle'>{gender}</td>
-        <td className='align-middle'>{phone}</td>
+        <td className='align-middle d-none d-sm-table-cell'>{gender}</td>
+        <td className='align-middle d-none d-sm-table-cell'>{phone}</td>
 
         {finContrato ? 
           <td className='text-center'>

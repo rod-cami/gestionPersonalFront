@@ -59,7 +59,7 @@ const showFailureAlert = async (message) =>{
   await Swal.fire({
     position: "center",
     icon: "error",
-    title: "Ocurrió un error inesperado.",
+    title: message,
     text: "Por favor intente más tarde",
     showConfirmButton: false,
     timer: 1500

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Table } from 'react-bootstrap';
+import { Spinner, Table } from 'react-bootstrap';
 import RowEmployees from '../Employees_Row_Table/Row_Employees';
 import { fetchEmployeeUtilities } from '../../hooks/utilities/connectionUtils';
 
@@ -10,6 +10,7 @@ const TableEmployees = ({token}) => {
   const [tablaEmpleados, setTablaEmpleados] = useState([]);
   const [supervisores, setSupervisores] = useState([]);
   const [tablaSupervisores, setTablaSupervisores] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const obtenerDatos = async () => {
     try {
@@ -18,7 +19,8 @@ const TableEmployees = ({token}) => {
       setEmpleados(noSupervisores);
       setTablaEmpleados(noSupervisores);
       setSupervisores(supervisores);
-      setTablaSupervisores(supervisores)
+      setTablaSupervisores(supervisores);
+      setLoading(false)
     } catch (error) {
       console.error("Error al obtener los datos:", error);
     }
@@ -55,23 +57,25 @@ const TableEmployees = ({token}) => {
   useEffect(()=>{obtenerDatos()},[]);
   
 
+  if (loading) {
+    return <div className='d-flex justify-content-center mt-5'><Spinner></Spinner></div>
+  }
   return (
     <>
       <div className='d-flex justify-content-end'>
-        <div class="input-group mb-3 w-25">
+        <div>
           <input type="text" className="form-control" value={busquedaEmpleado} onChange={handleChangeEmployees} placeholder="Buscar empleado" aria-label="Buscar empleado" aria-describedby="button-search-employees"/>
-          <button class="btn btn-outline-dark" type="button" id="button-search-employees" disabled><i className="bi bi-search"></i></button>
         </div>
       </div>
-      <div className='container mt-4 mb-5'>
-        <Table striped hover responsive size="sm" className='mb-5 caption-top'>
+      <div className='mt-4 mb-5'>
+        <Table striped hover responsive size="xs" className='mb-5 caption-top'>
           <caption>Lista empleados</caption>
           <thead>
             <tr className='text-start'>
               <th className='fs-4 fw-medium'>Legajo</th>
               <th className='fs-4 fw-medium'>Nombre</th>
-              <th className='fs-4 fw-medium'>Género</th>
-              <th className='fs-4 fw-medium'>Teléfono</th>
+              <th className='fs-4 fw-medium d-none d-sm-table-cell'>Género</th>
+              <th className='fs-4 fw-medium d-none d-sm-table-cell'>Teléfono</th>
               <th className='text-center fs-4 fw-medium'>Opciones</th>
             </tr>
           </thead>
@@ -84,9 +88,8 @@ const TableEmployees = ({token}) => {
         </Table>
       </div>
       <div className='d-flex justify-content-end mt-5'>
-        <div class="input-group mb-3 w-25">
+        <div>
           <input type="text" className="form-control" value={busquedaSupervisor} onChange={handleChangeSupervisor} placeholder="Buscar supervisor" aria-label="Buscar supervisor" aria-describedby="button-search-supervisor"/>
-          <button class="btn btn-outline-dark" type="button" id="button-search-supervisor" disabled><i className="bi bi-search"></i></button>
         </div>
       </div>
       <div className='container mt-4 mb-5'>
@@ -96,8 +99,8 @@ const TableEmployees = ({token}) => {
             <tr className='text-start'>
               <th className='fs-4 fw-medium'>Legajo</th>
               <th className='fs-4 fw-medium'>Nombre</th>
-              <th className='fs-4 fw-medium'>Género</th>
-              <th className='fs-4 fw-medium'>Teléfono</th>
+              <th className='fs-4 fw-medium d-none d-sm-table-cell'>Género</th>
+              <th className='fs-4 fw-medium d-none d-sm-table-cell'>Teléfono</th>
               <th className='text-center fs-4 fw-medium'>Opciones</th>
             </tr>
           </thead>

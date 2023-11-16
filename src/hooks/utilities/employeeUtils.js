@@ -47,5 +47,22 @@ const generateReportTexts = async ({sectores, roles, reportRoles, reportSectores
   return { reportRolTxt, reportSectorTxt }
 }
 
+const obtenerFechaYHora = () => {
+  const fechaActual = new Date();
+  
+  const dia = fechaActual.getDate();
+  const mes = fechaActual.getMonth() + 1;
+  const año = fechaActual.getFullYear();
 
-export {generateReportTexts}
+  const horas = fechaActual.getHours();
+  const minutos = fechaActual.getMinutes();
+  const segundos = fechaActual.getSeconds();
+
+  const fechaFormateada = `${año}-${mes < 10 ? '0' + mes : mes}-${dia < 10 ? '0' + dia : dia}`;
+  const horaFormateada = `${horas < 10 ? '0' + horas : horas}:${minutos < 10 ? '0' + minutos : minutos}:${segundos < 10 ? '0' + segundos : segundos}`;
+
+  return { fecha: fechaFormateada, hora: horaFormateada };
+};
+
+
+export {generateReportTexts, obtenerFechaYHora}
