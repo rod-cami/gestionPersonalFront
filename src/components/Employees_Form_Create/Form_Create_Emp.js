@@ -163,7 +163,7 @@ const Form_Create = ({id, token}) => {
                   message: 'Debe ser mayor a 2'
                 },
                 pattern: { 
-                  value: /^[A-Za-z0-9ÁÉÍÓÚáéíóúñÑ ]+$/i,
+                  value: /^[A-Za-z0-9ÁÉÍÓÚáéíóúñÑ ,.]+$/i,
                   message: 'Este campo solo acepta letras, números y espacios'
                 }
             })}
