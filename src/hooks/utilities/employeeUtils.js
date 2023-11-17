@@ -9,14 +9,14 @@ const generateReportTexts = async ({sectores, roles, reportRoles, reportSectores
 
     if (rolNew) {
       if (rolOld) {
-        reportRolTxt += `El día ${(rs.fechaCambio.slice(0,10))} dejo el rol de ${rolOld.nombreRol} y pasó al rol de ${rolNew.nombreRol}.`;
+        reportRolTxt += `El día ${(rs.fechaCambio.slice(0,10))} dejó el rol de ${rolOld.nombreRol} y pasó al rol de ${rolNew.nombreRol}.`;
       }
       else {
         reportRolTxt += `El día ${(rs.fechaCambio.slice(0,10))} comenzó a trabajar en el rol de ${rolNew.nombreRol}.`;
       }
     }else{
       if (rolOld) {
-        reportRolTxt += `El día ${(rs.fechaCambio.slice(0,10))} dejo el rol de ${rolOld.nombreRol}.`;
+        reportRolTxt += `El día ${(rs.fechaCambio.slice(0,10))} dejó el rol de ${rolOld.nombreRol}.`;
       }
       else{
         reportRolTxt += ``;
@@ -31,13 +31,13 @@ const generateReportTexts = async ({sectores, roles, reportRoles, reportSectores
 
     if (sectorNew) {
       if (sectorOld) {
-        reportSectorTxt += `El día ${(rs.fechaCambio.slice(0,10))} dejo el sector de ${sectorOld.nombreSector} y pasó al sector de ${sectorNew.nombreSector}. `;
+        reportSectorTxt += `El día ${(rs.fechaCambio.slice(0,10))} dejó el sector de ${sectorOld.nombreSector} y pasó al sector de ${sectorNew.nombreSector}. `;
       } else {
         reportSectorTxt += `El día ${(rs.fechaCambio.slice(0,10))} comenzó a trabajar en el sector de ${sectorNew.nombreSector}. `
       }
     } else {
       if (sectorOld) {
-        reportSectorTxt += `El día ${(rs.fechaCambio.slice(0,10))} dejo el sector de ${sectorOld.nombreSector}.`;
+        reportSectorTxt += `El día ${(rs.fechaCambio.slice(0,10))} dejó el sector de ${sectorOld.nombreSector}.`;
       } else {
         reportSectorTxt += ``;
       }

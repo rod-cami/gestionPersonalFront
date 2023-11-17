@@ -39,9 +39,9 @@ const BodyReportEmployees = ({ id , token}) => {
 
 
   return (
-    <div className='mx-3'>
+    <div className='mx-3 pb-2'>
         <h5 className='fw-medium mt-2 fs-5'>Historial del empleado {employee.nombreEmpleado}</h5>
-        <p className='fw-light mt-1'>Actualmente el empleado trabaja en el sector Bedelía como Secretario</p>
+        {employee.rol !== null ? <p className='fw-light mt-1'>Actualmente el empleado trabaja en el sector {employee.sector.nombreSector} como {employee.rol.nombreRol}</p> : <p className='fw-light mt-1'>Actualmente el empleado no trabaja en la organización</p>}
 
         <p className='fw-medium mt-2 fs-5'>Roles</p>
         <p className='fw-light mt-1' dangerouslySetInnerHTML={{ __html: txtReportRol}}></p>

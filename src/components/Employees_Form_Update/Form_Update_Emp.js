@@ -65,7 +65,6 @@ const Form_Update = ({id, token}) => {
             {...register('genero')}>
             <option value='F'>Femenino</option>
             <option value='M'>Masculino</option>
-            <option value='N'>Prefiero no decirlo</option>
           </Form.Select>
           <Form.Text className="text-danger tamLetra d-block">
             {errors.genero?.message}

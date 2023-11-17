@@ -25,15 +25,15 @@ const Login = () => {
   }
   
   return (
-    <div className='border border-0 rounded-5 p-5 login'>
-      <h1 className='fs-1 text-center'>Bienvenido</h1>
+    <div className='border border-0 p-lg-5 py-5 px-2 rounded-5 login'>
+      <h1 className='fs-1 text-center fw-bold'>Bienvenido</h1>
       <p className='font-medium text-lg text-gray-500 mt-4 text-center'>Inicie sesión para ingresar al módulo de gestión de personal</p>
-      <Form className='row m-0 p-2' onSubmit={handleSubmit(procesarFormulario)}>
+      <Form className='row m-0 p-1' onSubmit={handleSubmit(procesarFormulario)}>
         <Form.Group className="col-12 mt-3">
           <Form.Label className='text-lg font-medium'>Email</Form.Label>
           <Form.Control
             placeholder="Ingrese el email del usuario"
-            className="input w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
+            className="input w-full border-2 border-gray-100 rounded-xl p-3 mt-1 bg-transparent"
             name="username"
             minLength={2}
             maxLength={300}
@@ -65,7 +65,7 @@ const Login = () => {
           <Form.Label className='text-lg font-medium'>Contraseña</Form.Label>
           <Form.Control
             placeholder="Ingrese contraseña del usuario"
-            className='w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent'
+            className='w-full border-2 border-gray-100 rounded-xl p-3 mt-1 bg-transparent'
             type="password"
             name="password"
             minLength={4}
@@ -95,7 +95,7 @@ const Login = () => {
           </Form.Text>
         </Form.Group>
         <div className='mt-8 flex flex-col gap-y-4'>
-          <button type="submit" className='active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01]  ease-in-out transform py-4 bg-violet-500 rounded-xl text-white font-bold text-lg'> { load==true ?  <Spinner color='light'></Spinner>  : <p className='fw-light'> Ingresar </p>}</button>
+          <button type="submit" className='active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01]  ease-in-out transform py-3 bg-violet-500 rounded-xl text-white font-bold text-lg'> { load==true ?  <Spinner color='light'></Spinner>  : <p className='fw-light'> Ingresar </p>}</button>
         </div>
       </Form>
     </div>

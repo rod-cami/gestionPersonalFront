@@ -13,9 +13,8 @@ const BodyRolEmployees = ({id,token}) => {
 
   const obtenerDatos = async () => {
     const { employee, roles, sectores} = await fetchEmployeeUtilities({userToken: token, id: id });
-    const rolesExceptLast = roles.slice(0, -1);
     setEmployee(employee);
-    setRoles(rolesExceptLast);
+    setRoles(roles);
     setSectores(sectores);
     setLoading(false);
   };
