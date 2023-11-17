@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 import {  useForm } from 'react-hook-form';
 import { addNewEmployee, fetchEmployeeUtilities } from '../../hooks/utilities/connectionUtils';
 import { showConfirmationAlert } from '../../hooks/utilities/notificationUtils';
-import { cuilValidator, emailValidator } from '../../hooks/validators/formDataValidators';
+import { cuilValidatorFinal, emailValidator } from '../../hooks/validators/formDataValidators';
 
 const Form_Create = ({id, token}) => {
   const {register, formState: { errors }, handleSubmit} = useForm();
@@ -34,7 +34,7 @@ const Form_Create = ({id, token}) => {
   const procesarFormulario = async (data, e) =>{
     const response = await showConfirmationAlert();
     const responseEmail = await emailValidator({userToken: token ,email: data.correo, id: null})
-    const responseCuil = await cuilValidator({userToken: token ,cuil: data.cuil})
+    const responseCuil = await cuilValidatorFinal({userToken: token ,cuil: data.cuil})
     if (response && responseEmail && responseCuil) {
       await addNewEmployee({userToken: token, data: data})
       e.target.reset();
