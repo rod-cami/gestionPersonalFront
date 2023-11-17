@@ -9,6 +9,7 @@ const Login = () => {
   const [load, setLoad] = useState(false)
 
   const datos = new URLSearchParams();
+  
   const procesarFormulario = async (data, e) =>{
     setLoad(true)
     datos.append('username', data.username);

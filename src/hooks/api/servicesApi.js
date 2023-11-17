@@ -12,7 +12,6 @@ const putData = async (URL,data,token) => {
 };
 
 const postLogin = async (URL, data) => {
-  console.log(data)
   const response = await fetch(URL,{
     method: 'POST',
     body: data,

@@ -13,7 +13,7 @@ const Form_Create = ({id, token}) => {
   const [loading, setLoading] = useState(true);
 
   const obtenerDatos = async () => {
-    const { roles, sectores, supervisores} = await fetchEmployeeUtilities({userToken: token, id: 1 });
+    const { roles, sectores, supervisores } = await fetchEmployeeUtilities({userToken: token, id: 1 });
     setRoles(roles);
     setSectores(sectores);
     setSupervisores(supervisores);
@@ -38,7 +38,7 @@ const Form_Create = ({id, token}) => {
     if (response && responseEmail && responseCuil) {
       await addNewEmployee({userToken: token, data: data})
       e.target.reset();
-      //window.location.reload();
+      window.location.reload();
     }
   }
 
