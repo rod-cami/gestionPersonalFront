@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# Gestion de Personal App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This web application, developed with React, facilitates personnel management for administrators. The app allows administrators to view a list of active personnel, distinguishing between employees and supervisors. Detailed employee reports are available, showcasing changes in roles and sectors throughout their employment cycle.
 
-In the project directory, you can run:
+![Gestion de Personal App Interface Snapshot](./src/assets/icons/gestion_personal_snapshot.png "Gestion de Personal App Interface Snapshot")
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To run this project locally, follow these steps:
+------------------
+1. Clone the repository:
+```bash
+git clone https://github.com/rod-cami/gestionPersonalFront
+cd gestionPersonalFront
+```
+2. Install dependencies:
+```bash
+npm install
+```
+3. Set the API URLs as environment variables:
+```bash
+REACT_APP_API_URL=https://gestionpersonal.azurewebsites.net
+REACT_APP_LOGIN_USER_URL=https://fastapiauth--tobiaspazposse.repl.co/login
+```
+4. Start the development server:
+```bash
+npm start
+```
+Open [http://localhost:3000](http://localhost:3000) in your browser
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Usage
 
-### `npm test`
+### Employee Management
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **List Employees:** View a list of active personnel, distinguishing between employees and supervisors.
+- **Employee Details:** Access detailed reports for each employee, including changes in roles and sectors over time.
+- **Add Employees:** Add new employees to the system.
+- **Remove Employees:** Remove employees from the system.
+- **Modify Employees:** Edit employee details, including role and sector changes.
 
-### `npm run build`
+### Sector and Role Changes
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Change Sector:** Move an employee to a different sector within the organization.
+- **Change Role:** Update an employee's role within the company.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### History Tracking
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **View History:** Visualize the historical changes in roles and sectors for each employee.
 
-### `npm run eject`
+## Technologies Used
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+* React
+* HTML/CSS
+* Netlify (for deployment)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Deployment
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The live version of the app can be accessed [here](https://gestiondepersonaladmderecursos.netlify.app/ "Link to deployed solution")
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Contributors
 
-## Learn More
+* Rodríguez Camila
+* Paz Posse Tobías
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## License
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This project is licensed under the [MIT License](LICENSE).
 
-### Code Splitting
+## Additional Information
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+For more details on project configuration, deployment, and troubleshooting, refer to the [Create React App documentation](https://facebook.github.io/create-react-app/docs/).
