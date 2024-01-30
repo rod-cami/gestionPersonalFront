@@ -4,8 +4,6 @@
 
 This web application, developed with React, facilitates personnel management for administrators. The app allows administrators to view a list of active personnel, distinguishing between employees and supervisors. Detailed employee reports are available, showcasing changes in roles and sectors throughout their employment cycle.
 
-![Gestion de Personal App Interface Snapshot](./src/assets/icons/gestion_personal_snapshot.png "Gestion de Personal App Interface Snapshot")
-
 ## Installation
 
 To run this project locally, follow these steps:
